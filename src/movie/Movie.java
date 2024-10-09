@@ -23,7 +23,7 @@ public class Movie {
     }
 
     public String getDetails() {
-        return "Movie title: " + title + "\nGenre: " + genre + "\nYear: " + releaseYear + "\nRating: " + rating + "\nDuration: " + duration + " minutes";
+        return "Movie title: " + title + "\nGenre: " + genre + "\nYear: " + releaseYear + "\nRating: " + rating + "\nDuration: " + duration + " minutes" + "\n----------------------------";
     }
 
     public double getRating() {
