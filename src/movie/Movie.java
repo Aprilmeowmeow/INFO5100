@@ -35,7 +35,11 @@ public class Movie {
     }
 
     public String getGenre() {
-        return genre;
+        return genre.toLowerCase();
     }
+    public String getTitle() {
+        return title;
+    }
+
 
 }
