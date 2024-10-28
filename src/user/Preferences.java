@@ -9,6 +9,8 @@ public class Preferences {
     private String[] favoriteGenres;
     private int preferredMaxDuration;
     private double minimumRating;
+    public static Preferences preferencesUser1 = new Preferences(new String[]{"Sci-Fi", "Drama"}, 150, 8.0);
+    public static Preferences preferencesUser2 = new Preferences(new String[]{"Action", "Comedy"}, 120, 9.0);
 
     public Preferences(String[] favoriteGenres, int preferredMaxDuration, double minimumRating) {
         this.favoriteGenres = favoriteGenres;
