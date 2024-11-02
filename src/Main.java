@@ -1,6 +1,7 @@
 import movie.Movie;
 import movie.MovieInterface;
 import system.MovieRecommendationSystem;
+import system.RecommendSystemInterface;
 import user.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class Main {
         ProfileInterface profileFunction = new Profile();
         BillingInterface billingFunction = new Billing();
         CommunityInterface communityFunction = new Community();
+        RecommendSystemInterface recommendSystemFunction = new MovieRecommendationSystem();
 
         while (true) {
             System.out.println("\n===== Movie System Main Menu =====");
@@ -45,29 +47,9 @@ public class Main {
                 int recommendChoice = scanner.nextInt();
                 scanner.nextLine();
                 if (recommendChoice == 1) {
-                    System.out.print("Enter the username to recommend a movie to: ");
-                    String username = scanner.nextLine();
-                    User receiver = username.equals("eastwang1202") ? User.user2 : User.user1;
-                    System.out.println("Select a movie to recommend:");
-                    for (int i = 0; i < Movie.movieList.size(); i++) {
-                        System.out.println((i + 1) + ". " + Movie.movieList.get(i).getDetails());
-                    }
-                    System.out.println("Enter your movie choice: ");
-                    int movieChoice = scanner.nextInt() - 1;
-                    if (movieChoice >= 0 && movieChoice < Movie.movieList.size()) {
-                        movieSystem.recommendMovie(User.currentUser, receiver, Movie.movieList.get(movieChoice));
-                        System.out.println("Your movie recommended successfully.");
-                    } else {
-                        System.out.println("Invalid movie selection.");
-                    }
+                    recommendSystemFunction.recommendMovie(scanner);
                 } else if (recommendChoice == 2) {
-                    System.out.println("Movies recommended to you:");
-                    List<Movie> recommendations = movieSystem.showRecommendationsForUser(User.currentUser);
-                    if (recommendations.isEmpty()) {
-                        System.out.println("No recommendations available.");
-                    } else {
-                        recommendations.forEach(movie -> System.out.println(movie.getDetails()));
-                    }
+                    recommendSystemFunction.userRecommendList();
                 }
             } else if (choice == 3) {
                 profileFunction.manageProfiles(scanner);
