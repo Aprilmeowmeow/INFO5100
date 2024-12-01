@@ -41,7 +41,7 @@ public class Main {
 
             } else if (choice == 2) {
                 System.out.println("1. Recommend a Movie to Another User");
-                System.out.println("2. View Recommended Movies from Another User");
+                System.out.println("2. View Recommended Movies");
                 System.out.println("Select an option: ");
 
                 int recommendChoice = scanner.nextInt();

@@ -8,9 +8,10 @@ import java.util.*;
 public class MovieRecommendationSystem implements RecommendSystemInterface {
     private List<User> allUsers = new ArrayList<>();
     private Map<User, List<Movie>> userRecommendations = new HashMap<>();
+    private MovieRecommendFromFile movieAnalyzer;
 
     public MovieRecommendationSystem() {
-
+        movieAnalyzer = new MovieRecommendFromFile();
     }
 
     @Override
@@ -28,7 +29,14 @@ public class MovieRecommendationSystem implements RecommendSystemInterface {
 
     @Override
     public List<Movie> getRecommendedMovie(User user) {
-        return userRecommendations.getOrDefault(user, new ArrayList<>());
+        if (userRecommendations.containsKey(user)) {
+            return userRecommendations.get(user);
+        }
+        else {
+            System.out.println("No recommended movie from your friends:(");
+            System.out.println("But there are our users most likely movies!");
+            return MovieRecommendFromFile.getTopThreeMovies();
+        }
     }
 
     @Override
@@ -37,8 +45,11 @@ public class MovieRecommendationSystem implements RecommendSystemInterface {
         if (recommendedMovie == null) {
             return null;
         } else {
-            return recommendedMovie;
+            for (Movie movie : recommendedMovie) {
+                System.out.println(movie.getTitle());  // 只顯示標題
+            }
         }
+        return recommendedMovie;
     }
 
     @Override
